@@ -2,7 +2,7 @@
 import {useNavigate} from "react-router-dom";
 
 import logo from "../images/restaulogo.svg"
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Menubar } from 'primereact/menubar';
 
 export default function Header() {
@@ -10,19 +10,15 @@ export default function Header() {
 
     const items = [
         {
-            label: 'Acceuil',
+            label: 'Ville',
             icon: 'pi pi-fw pi-user',
             command: () => {navigate('/') }
         },
-        {
-            label: 'Ville',
-            icon: 'pi pi-fw pi-book',
-            command: () => {navigate('/education') }
-        },
+
         {
             label: 'Zone',
             icon: 'pi pi-fw pi-verified',
-            command: () => {navigate('/certification') }
+            command: () => {navigate('/zone') }
         },
         {
             label: 'Restaurant',
