@@ -20,24 +20,24 @@ export default function Footer() {
                         <div className="col-sm-6 col-md-3 item">
                             <h3>About Us</h3>
                             <ul>
-                                <li><a href="/#">Company</a></li>
-                                <li><a href="/#">Team</a></li>
-                                <li><a href="/#">Careers</a></li>
+                                <li><h5 >Company</h5></li>
+                                <li><h5>Team</h5></li>
+                                <li><h5 >Careers</h5></li>
                             </ul>
                         </div>
                         <div className="col-sm-6 col-md-3 item">
                             <h3>Contact Us</h3>
                             <ul>
-                                <li><a href="#">Phone: 555-123-4567</a></li>
-                                <li><a href="#">Email: info@pharmacylocationapp.com</a></li>
-                                <li><a href="#">Address: 123 Main St, Morocco</a></li>
+                                <li><h6 >Phone: 555-123-4567</h6></li>
+                                <li><h6 >Email: info@pharmacylocationapp.com</h6></li>
+                                <li><h6 >Address: 123 Main St, Morocco</h6></li>
                             </ul>
                         </div>
                         <div className="col item social">
-                            <a href="#"><RiTelegramFill/></a>
-                            <a href="#"><RiFacebookCircleFill/></a>
-                            <a href="#"><AiFillTwitterCircle/></a>
-                            <a href="#"><RiInstagramFill/></a></div>
+                            <a href="https://web.telegram.org/z/"><RiTelegramFill/></a>
+                            <a href="https://web.telegram.org/z/"><RiFacebookCircleFill/></a>
+                            <a href="https://web.telegram.org/z/"><AiFillTwitterCircle/></a>
+                            <a href="https://web.telegram.org/z/"><RiInstagramFill/></a></div>
                     </div>
                     <p className="copyright">Team Restaurant © 2023</p>
                 </div>

@@ -136,10 +136,10 @@ export default function VilleTable(){
             >
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title" id="modal-modal-title">Update User</h5>
+                        <h5 className="card-title" id="modal-modal-title">Update Ville</h5>
                         <form>
                             <div className="mb-3">
-                                <label htmlFor="user-nom" className="form-label">Zone:</label>
+                                <label htmlFor="user-nom" className="form-label">Ville:</label>
                                 <input type="text" className="form-control" id="user-nom" value={villeNom} onChange={(e) => setVilleNom(e.target.value)} />
                             </div>
 

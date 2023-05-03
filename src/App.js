@@ -5,6 +5,7 @@ import "primeicons/primeicons.css";
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Ville from "./components/Ville"
+import Zone from "./components/Zone"
 
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Header/>
           <Routes>
               <Route exact path="/" element={<Ville/>}/>
+              <Route exact path="/zone" element={<Zone/>}/>
 
           </Routes>
             <Footer/>
