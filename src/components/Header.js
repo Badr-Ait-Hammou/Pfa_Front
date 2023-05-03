@@ -23,12 +23,12 @@ export default function Header() {
         {
             label: 'Restaurant',
             icon: 'pi pi-fw pi-slack',
-            command: () => {navigate('/projects') }
+            command: () => {navigate('/restaurant') }
         },
         {
-            label: 'Commandes',
+            label: 'User',
             icon: 'pi pi-spin pi-spinner',
-            command: () => {navigate('/experience') }
+            command: () => {navigate('/user') }
         },
         {
             label: 'Serie',
