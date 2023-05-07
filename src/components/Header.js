@@ -33,7 +33,7 @@ export default function Header() {
         {
             label: 'Serie',
             icon: 'pi pi-bolt',
-            command: () => {navigate('/services') }
+            command: () => {navigate('/serie') }
         },
 
 

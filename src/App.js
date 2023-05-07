@@ -7,6 +7,8 @@ import Footer from "./components/Footer"
 import Ville from "./components/Ville"
 import Zone from "./components/Zone"
 import User from "./components/User"
+import Restaurant from "./components/Restaurant"
+import Serie from "./components/Serie"
 
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 function App() {
@@ -18,6 +20,8 @@ function App() {
               <Route exact path="/" element={<Ville/>}/>
               <Route exact path="/zone" element={<Zone/>}/>
               <Route exact path="/user" element={<User/>}/>
+              <Route exact path="/restaurant" element={<Restaurant/>}/>
+              <Route exact path="/serie" element={<Serie/>}/>
 
           </Routes>
             <Footer/>
