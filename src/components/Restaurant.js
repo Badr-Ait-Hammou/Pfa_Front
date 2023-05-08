@@ -175,7 +175,7 @@ export default function Restaurant() {
                                             fullWidth
 
                                             label="dateopen"
-                                            type="date"
+                                            type="datetime-local"
                                             autoComplete="dateopen"
                                             id="dateopen"
                                             value={dateOuverture}
@@ -189,7 +189,7 @@ export default function Restaurant() {
                                             fullWidth
 
                                             label="dateclose"
-                                            type="date"
+                                            type="datetime-local"
                                             autoComplete="dateclose"
                                             id="dateclose"
                                             value={dateFermeture}

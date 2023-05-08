@@ -12,7 +12,7 @@ export default function Header() {
         {
             label: 'Ville',
             icon: 'pi pi-fw pi-user',
-            command: () => {navigate('/') }
+            command: () => {navigate('/ville') }
         },
 
         {
@@ -34,6 +34,11 @@ export default function Header() {
             label: 'Serie',
             icon: 'pi pi-bolt',
             command: () => {navigate('/serie') }
+        },
+        {
+            label: 'Specialite',
+            icon: 'pi pi-bolt',
+            command: () => {navigate('/specialite') }
         },
 
 

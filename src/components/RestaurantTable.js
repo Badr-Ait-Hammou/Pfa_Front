@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import {IconButton} from "@mui/material";
-
+import moment from "moment";
 
 
 
@@ -183,8 +183,12 @@ export default function RestaurantTable() {
                             <td style={{ padding: "10px", maxWidth: "100px", overflowX: "scroll",  whiteSpace: "nowrap" }}>
                                 {restaurant.adresse}
                             </td>
-                            <td style={{ padding:"10px" }}>{restaurant.dateOuverture}</td>
-                            <td style={{ padding:"10px" }}>{restaurant.dateFermeture}</td>
+                            <td style={{ padding:"10px" }}>
+                                {moment(restaurant.dateOuverture).format("YYYY-MM-DD HH:mm")}
+                            </td>
+                            <td style={{ padding:"10px" }}>
+                                {moment(restaurant.dateFermeture).format("YYYY-MM-DD HH:mm")}
+                            </td>
                             <td style={{ padding:"10px" }}>{restaurant.serie && restaurant.serie.nom}</td>
                             <td style={{ padding:"10px" }}>{restaurant.zone && restaurant.zone.nom}</td>
                             <td style={{ padding:"10px" }}>{restaurant.user && restaurant.user.nom}</td>
