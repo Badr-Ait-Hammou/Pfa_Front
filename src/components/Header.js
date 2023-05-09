@@ -11,23 +11,23 @@ export default function Header() {
     const items = [
         {
             label: 'Ville',
-            icon: 'pi pi-fw pi-user',
+            icon: 'pi pi-fw pi-map',
             command: () => {navigate('/ville') }
         },
 
         {
             label: 'Zone',
-            icon: 'pi pi-fw pi-verified',
+            icon: 'pi pi-fw pi-flag',
             command: () => {navigate('/zone') }
         },
         {
             label: 'Restaurant',
-            icon: 'pi pi-fw pi-slack',
+            icon: 'pi pi-fw pi-star',
             command: () => {navigate('/restaurant') }
         },
         {
             label: 'User',
-            icon: 'pi pi-spin pi-spinner',
+            icon: 'pi pi-fw pi-user',
             command: () => {navigate('/user') }
         },
         {
@@ -37,7 +37,7 @@ export default function Header() {
         },
         {
             label: 'Specialite',
-            icon: 'pi pi-bolt',
+            icon: 'pi pi-th-large',
             command: () => {navigate('/specialite') }
         },
 
