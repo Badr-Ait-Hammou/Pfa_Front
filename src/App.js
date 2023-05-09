@@ -11,6 +11,7 @@ import Restaurant from "./components/Restaurant"
 import Serie from "./components/Serie"
 import Home from "./components/HomePage"
 import Specialite from "./components/Specialite"
+import Produit from "./components/Produit"
 
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route exact path="/restaurant" element={<Restaurant/>}/>
               <Route exact path="/serie" element={<Serie/>}/>
               <Route exact path="/specialite" element={<Specialite/>}/>
+              <Route exact path="/produit" element={<Produit/>}/>
 
           </Routes>
             <Footer/>
