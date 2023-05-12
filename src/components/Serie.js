@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import axios from 'axios';
+import axios from '../service/callerService';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -30,7 +30,7 @@ export default function Serie() {
         if (!nom) {
             alert("Please enter a serie name");
         } else {
-            await axios.post("http://localhost:8080/api/series/save", serie);
+            await axios.post("/api/controller/series/save", serie);
             setNom("");
             forceUpdate();
             setTableKey(Date.now()); // update the key to re-render the table
@@ -42,10 +42,8 @@ export default function Serie() {
     }, [upTB]); // add upTB to the dependency array
 
     const getSeries = async () => {
-
-        const res = await axios.get(`http://localhost:8080/api/series/`);
+        const res = await axios.get(`/api/controller/series/`);
         setSerie(res.data);
-
     }
 
     return (

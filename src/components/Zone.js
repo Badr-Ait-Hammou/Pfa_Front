@@ -8,9 +8,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from "axios";
+import axios from  '../service/callerService';
 import React, { useState, useEffect, useReducer } from "react";
 import ZoneTable from "../components/ZoneTable";
+
 
 
 
@@ -28,14 +29,14 @@ export default function Zone() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/villes/").then((response) => {
+        axios.get("/api/controller/villes/").then((response) => {
             setVilles(response.data);
         });
     }, [upTB]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:8080/api/zones/save", {
+        axios.post("/api/controller/zones/save", {
             nom,
             ville: {
                 id: villeid

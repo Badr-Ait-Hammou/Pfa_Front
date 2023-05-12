@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from  '../service/callerService';
 import Modal from "react-modal";
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from "@mui/material/Button";
@@ -18,7 +18,7 @@ export default function ZoneList({ cityId })  {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await axios(`http://localhost:8080/api/zones/`);
+            const result = await axios(`/api/controller/zones/`);
             setZones(result.data);
         };
         fetchData();
@@ -26,7 +26,7 @@ export default function ZoneList({ cityId })  {
 
     useEffect(() => {
         const fetchCities = async () => {
-            const result = await axios(`http://localhost:8080/api/villes/`);
+            const result = await axios(`/api/controller/villes/`);
             setVilles(result.data);
         };
         fetchCities();
@@ -34,7 +34,7 @@ export default function ZoneList({ cityId })  {
 
     const handleDelete = (zoneId) => {
         if (window.confirm("Are you sure you want to delete this zone?")) {
-            axios.delete(`http://localhost:8080/api/zones/${zoneId}`).then(() => {
+            axios.delete(`/api/controller/zones/${zoneId}`).then(() => {
                 setZones(zones.filter((zone) => zone.id !== zoneId));
             });
         }
@@ -53,7 +53,7 @@ export default function ZoneList({ cityId })  {
 
     const handleEditZone = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:8080/api/zones/${id}`, {
+            const response = await axios.put(`/api/controller/zones/${id}`, {
                 nom: zoneName,
                 ville: {
                     id: zoneCity
@@ -76,7 +76,7 @@ export default function ZoneList({ cityId })  {
 
 
     const loadzones=async ()=>{
-        const res=await axios.get(`http://localhost:8080/api/zones/`);
+        const res=await axios.get(`/api/controller/zones/`);
         setZones(res.data);
     }
 

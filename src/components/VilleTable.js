@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from '@mui/material/Button';
-import axios from "axios";
+import axios from  '../service/callerService';
 import Modal from "react-modal";
 
 
@@ -18,8 +18,8 @@ export default function VilleTable(){
 
     useEffect(() => {
         const getville = async () => {
-            const res = await fetch('http://localhost:8080/api/villes/');
-            const getdata = await res.json();
+            const res = await axios.get('http://localhost:8080/api/controller/villes/');
+            const getdata = res.data;
             setVilles(getdata);
             loadVilles();
         }
@@ -29,13 +29,13 @@ export default function VilleTable(){
 
 
     const loadVilles=async ()=>{
-        const res=await axios.get("http://localhost:8080/api/villes/");
+        const res=await axios.get("/api/controller/villes/");
         setVilles(res.data);
     }
 
     const handleDelete = (villeId) => {
         if (window.confirm("Are you sure you want to delete this Item?")) {
-            axios.delete(`http://localhost:8080/api/villes/${villeId}`).then(() => {
+            axios.delete(`/api/controller/villes/${villeId}`).then(() => {
                 setVilles(villes.filter((ville) => ville.id !== villeId));
             });
         }
@@ -55,7 +55,7 @@ export default function VilleTable(){
 
     const handleEditVille = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:8080/api/villes/${id}`, {
+            const response = await axios.put(`/api/controller/villes/${id}`, {
                 nom: villeNom,
 
             })

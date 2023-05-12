@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import axios from 'axios';
+import axios from '../service/callerService';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -30,7 +30,7 @@ export default function Ville() {
         if (!nom) {
             alert("Please enter a ville name");
         } else {
-            await axios.post("http://localhost:8080/api/villes/save", ville);
+            await axios.post("/api/controller/villes/save", ville);
             setNom("");
             forceUpdate();
             setTableKey(Date.now()); // update the key to re-render the table
@@ -43,7 +43,7 @@ export default function Ville() {
 
     const getVilles = async () => {
 
-        const res = await axios.get(`http://localhost:8080/api/villes/`);
+        const res = await axios.get(`/api/controller/villes/`);
         setVille(res.data);
 
     }

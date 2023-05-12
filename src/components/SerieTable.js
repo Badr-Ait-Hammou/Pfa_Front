@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from '@mui/material/Button';
-import axios from "axios";
+import axios from '../service/callerService';
 import Modal from "react-modal";
 
 
@@ -18,8 +18,8 @@ export default function SerieTable(){
 
     useEffect(() => {
         const getserie = async () => {
-            const res = await fetch('http://localhost:8080/api/series/');
-            const getdata = await res.json();
+            const res = await axios.get('/api/controller/series/');
+            const getdata = res.data;
             setSeries(getdata);
             loadSeries();
         }
@@ -29,13 +29,13 @@ export default function SerieTable(){
 
 
     const loadSeries=async ()=>{
-        const res=await axios.get("http://localhost:8080/api/series/");
+        const res=await axios.get("/api/controller/series/");
         setSeries(res.data);
     }
 
     const handleDelete = (serieid) => {
         if (window.confirm("Are you sure you want to delete this Item?")) {
-            axios.delete(`http://localhost:8080/api/series/${serieid}`).then(() => {
+            axios.delete(`/api/controller/series/${serieid}`).then(() => {
                 setSeries(series.filter((serie) => serie.id !== serieid));
             });
         }
@@ -55,7 +55,7 @@ export default function SerieTable(){
 
     const handleEditVille = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:8080/api/series/${id}`, {
+            const response = await axios.put(`/api/controller/series/${id}`, {
                 nom: serieNom,
 
             })

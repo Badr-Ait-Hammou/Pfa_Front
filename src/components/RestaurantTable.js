@@ -1,5 +1,5 @@
 
-import axios from "axios";
+import axios from '../service/callerService';
 import React,{useState,useEffect} from "react";
 import Modal from "react-modal";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -42,14 +42,14 @@ export default function RestaurantTable() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/restaurants/").then((response) => {
+        axios.get("/api/controller/restaurants/").then((response) => {
             setrestaurants(response.data);
         });
     }, []);
 
     useEffect(() => {
         const fetchusers = async () => {
-            const result = await axios(`http://localhost:8080/api/users/`);
+            const result = await axios(`/api/controller/users/`);
             setUsers(result.data);
         };
         fetchusers();
@@ -57,7 +57,7 @@ export default function RestaurantTable() {
 
     useEffect(() => {
         const fetchzones = async () => {
-            const result = await axios(`http://localhost:8080/api/zones/`);
+            const result = await axios(`/api/controller/zones/`);
             setZones(result.data);
         };
         fetchzones();
@@ -65,7 +65,7 @@ export default function RestaurantTable() {
     
     useEffect(() => {
         const fetchseries = async () => {
-            const result = await axios(`http://localhost:8080/api/series/`);
+            const result = await axios(`/api/controller/series/`);
             setSeries(result.data);
         };
         fetchseries();
@@ -73,7 +73,7 @@ export default function RestaurantTable() {
 
     const handleDelete = (id) => {
         if (window.confirm("Are you sure you want to delete this User?")) {
-            axios.delete(`http://localhost:8080/api/restaurants/${id}`).then(() => {
+            axios.delete(`/api/controller/restaurants/${id}`).then(() => {
                 setrestaurants(restaurants.filter((restaurant) => restaurant.id !== id));
             });
         }
@@ -88,7 +88,6 @@ export default function RestaurantTable() {
         setRestaurantDateclose(restaurant.dateFermeture);
         setRestaurantAdresse(restaurant.adresse);
         setRestaurantPhoto(restaurant.photo);
-        setRestaurantUser(restaurant.user.id);
         setRestaurantSerie(restaurant.serie.id);
         setRestaurantZone(restaurant.zone.id);
         setModalIsOpen(true);
@@ -102,7 +101,7 @@ export default function RestaurantTable() {
 
     const handleEditRestaurant = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:8080/api/restaurants/${id}`, {
+            const response = await axios.put(`/api/controller/restaurants/${id}`, {
                 nom:restaurantnom,
                 longitude:restaurantlongitude,
                 latitude:restaurantlatitude,
@@ -110,9 +109,7 @@ export default function RestaurantTable() {
                 dateOuverture:restaurantdateopen,
                 dateFermeture:restaurantdateclose,
                 photo:restaurantPhoto,
-                user: {
-                    id: restaurantUser
-                },
+
                 zone: {
                     id: restaurantZone
                 },
@@ -146,7 +143,7 @@ export default function RestaurantTable() {
         reader.readAsDataURL(file);
     };
     const loadRestaurants=async ()=>{
-        const res=await axios.get(`http://localhost:8080/api/restaurants/`);
+        const res=await axios.get(`/api/controller/restaurants/`);
         setrestaurants(res.data);
     }
 
@@ -166,7 +163,6 @@ export default function RestaurantTable() {
                         <th>datefermeture</th>
                         <th>serie</th>
                         <th>Zone</th>
-                        <th>User</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -191,7 +187,6 @@ export default function RestaurantTable() {
                             </td>
                             <td style={{ padding:"10px" }}>{restaurant.serie && restaurant.serie.nom}</td>
                             <td style={{ padding:"10px" }}>{restaurant.zone && restaurant.zone.nom}</td>
-                            <td style={{ padding:"10px" }}>{restaurant.user && restaurant.user.nom}</td>
                             <td>
                                 <IconButton
                                     style={{color:"red"}}
@@ -345,31 +340,7 @@ export default function RestaurantTable() {
                                     </select>
                                 </div>
 
-                                <div className="col-md-6">
-                                    <label htmlFor="restaurant-adresse" className="form-label">Adresse:</label>
-                                    <select
-                                        value={restaurantUser}
-                                        onChange={(e) => setRestaurantUser(e.target.value)}
-                                        style={{
-                                            backgroundColor: "#f2f2f2",
-                                            border: "none",
-                                            borderRadius: "4px",
-                                            color: "#555",
-                                            fontSize: "16px",
-                                            padding: "8px 12px",
-                                            width: "100%",
-                                            marginBottom: "12px"
-                                        }}
-                                    >
-                                        <option value="">Select a user </option>
 
-                                        {users.map((user) => (
-                                            <option key={user.id} value={user.id}>
-                                                {user.nom}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
                             </div>
                         </form>
                         <div className="d-flex justify-content-center mt-3">

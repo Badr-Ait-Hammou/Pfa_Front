@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import axios from "axios";
+import axios from '../service/callerService';
 import React,{useState,useEffect,useReducer} from "react";
 import RestaurantTable from "../components/RestaurantTable";
 import { Card, CardContent } from '@mui/material';
@@ -34,13 +34,13 @@ export default function Restaurant() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/users/").then((response) => {
+        axios.get("/api/controller/users/").then((response) => {
             setUsers(response.data);
         });
-        axios.get("http://localhost:8080/api/series/").then((response) => {
+        axios.get("/api/controller/series/").then((response) => {
             setSeries(response.data);
         });
-        axios.get("http://localhost:8080/api/zones/").then((response) => {
+        axios.get("/api/controller/zones/").then((response) => {
             setZones(response.data);
         });
     }, [upTB]);
@@ -50,7 +50,7 @@ export default function Restaurant() {
         console.log("jsjkjksjkjkqsdjks",photo);
 
         event.preventDefault();
-        axios.post("http://localhost:8080/api/restaurants/save", {
+        axios.post("/api/controller/restaurants/save", {
             nom,
             longitude,
             latitude,
@@ -240,23 +240,6 @@ export default function Restaurant() {
                                         </select>
                                     </Grid>
 
-                                    <Grid item xs={12} sm={4}>
-
-
-                                        <select
-                                            className="form-control"
-                                            id="cityId"
-                                            value={userid}
-                                            onChange={(event) => setUserid(event.target.value)}
-                                        >
-                                            <option value="">Select  user </option>
-                                            {users && users.map((user) => (
-                                                <option key={user.id} value={user.id}>
-                                                    {user.nom}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </Grid>
 
                                 </Grid>
                                 <Button

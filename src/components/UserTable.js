@@ -1,5 +1,5 @@
 
-import axios from "axios";
+import axios from '../service/callerService';
 import React,{useState,useEffect} from "react";
 import Modal from "react-modal";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -16,9 +16,11 @@ import Button from "@mui/material/Button";
 export default function UserTable() {
     const [users, setusers] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [userNom, setUserNom] = useState('');
-    const [userPrenom, setUserPrenom] = useState('');
+    const [userFirstname, setUserFirstname] = useState('');
+    const [userLastname, setuserLastname] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [userUsername, setUserusername] = useState('');
+    const [userRole, setUserRole] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [userTel, setUsertel] = useState('');
     const [selectedUser, setSelectedUser] = useState(null);
@@ -52,10 +54,12 @@ export default function UserTable() {
     const handleEditUser = async (id) => {
         try {
             const response = await axios.put(`http://localhost:8080/api/users/${id}`, {
-                nom: userNom,
-                prenom:userPrenom,
+                firstName: userFirstname,
+                lastName:userLastname,
                 email:userEmail,
+                username:userUsername,
                 password:userPassword,
+                role:userRole,
                 telephone:userTel,
 
             })
@@ -82,14 +86,16 @@ export default function UserTable() {
     return (
         <div>
             <div className="table-responsive">
+
                 <table className="table mt-5 text-center">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>nom</th>
-                        <th>prenom</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Username</th>
+                        <th>Role</th>
                         <th>email</th>
-                        <th>password</th>
                         <th>telephone</th>
                     </tr>
                     </thead>
@@ -97,10 +103,12 @@ export default function UserTable() {
                     {users.map((user) => (
                         <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.nom}</td>
-                            <td>{user.prenom}</td>
+                            <td>{user.firstName}</td>
+                            <td>{user.lastName}</td>
+                            <td>{user.username}</td>
+                            <td>{user.role}</td>
                             <td>{user.email}</td>
-                            <td>{user.password}</td>
+
                             <td>{user.telephone}</td>
                             <td>
                                 <Button variant="contained" color="warning" onClick={() => handleDelete(user.id)}>
@@ -150,20 +158,28 @@ export default function UserTable() {
                         <h5 className="card-title" id="modal-modal-title">Update User</h5>
                         <form>
                             <div className="mb-3">
-                                <label htmlFor="user-nom" className="form-label">Nom:</label>
-                                <input type="text" className="form-control" id="user-nom" value={userNom} onChange={(e) => setUserNom(e.target.value)} required/>
+                                <label htmlFor="user-nom" className="form-label">Firstname:</label>
+                                <input type="text" className="form-control" id="user-nom" value={userFirstname} onChange={(e) => setUserFirstname(e.target.value)} required/>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="user-prenom" className="form-label">Prenom:</label>
-                                <input type="text" className="form-control" id="user-prenom" value={userPrenom} onChange={(e) => setUserPrenom(e.target.value)} required />
+                                <label htmlFor="user-FLastname" className="form-label">Lastname:</label>
+                                <input type="text" className="form-control" id="user-FLastname" value={userLastname} onChange={(e) => setuserLastname(e.target.value)} required />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="user-email" className="form-label">Email:</label>
                                 <input type="text" className="form-control" id="user-email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
                             </div>
                             <div className="mb-3">
+                                <label htmlFor="user-email" className="form-label">Username:</label>
+                                <input type="text" className="form-control" id="user-email" value={userUsername} onChange={(e) => setUserusername(e.target.value)} />
+                            </div>
+                            <div className="mb-3">
                                 <label htmlFor="user-password" className="form-label">Mot de passe:</label>
                                 <input type="text" className="form-control" id="user-password" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="user-password" className="form-label">Role:</label>
+                                <input type="text" className="form-control" id="user-password" value={userRole} onChange={(e) => setUserRole(e.target.value)} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="user-password" className="form-label">num tel:</label>
@@ -177,7 +193,6 @@ export default function UserTable() {
                     </div>
                 </div>
             </Modal>
-
         </div>
     );
 

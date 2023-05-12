@@ -17,11 +17,13 @@ export default function User() {
 
 
     const [user, setUser] = useState([]);
-    const [nom, setNom] = useState("");
-    const [prenom, setPrenom] = useState("");
+    const [firstname, setFirstName] = useState("");
+    const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [username, setUserName] = useState("");
     const [telephone, settel] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
     const [upTB, forceUpdate] = useReducer((x) => x + 1, 0);
     const [tableKey, setTableKey] = useState(Date.now());
 
@@ -34,19 +36,23 @@ export default function User() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:8080/api/users/save", {
-            nom,
-            prenom,
+        axios.post("http://localhost:8080/api/auth/register", {
+            firstname,
+            lastname,
             email,
+            username,
+            role,
             password,
             telephone,
         })
             .then((response) => {
-                setNom("");
-                setPrenom("");
+                setFirstName("");
+                setLastName("");
                 setEmail("");
+                setUserName("");
                 setPassword("");
                 settel("");
+                setRole("");
                 forceUpdate();
                 setTableKey(Date.now());
             })
@@ -82,12 +88,12 @@ export default function User() {
                                     required
                                     fullWidth
 
-                                    label="nom"
+                                    label="firstName"
 
-                                    autoComplete="nom"
-                                    id="nom"
-                                    value={nom}
-                                    onChange={(event) => setNom(event.target.value)}
+                                    autoComplete="firstName"
+                                    id="firstName"
+                                    value={firstname}
+                                    onChange={(event) => setFirstName(event.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -95,12 +101,12 @@ export default function User() {
                                     required
                                     fullWidth
 
-                                    label="prenom"
+                                    label="lastName"
 
-                                    autoComplete="prenom"
-                                    id="prenom"
-                                    value={prenom}
-                                    onChange={(event) => setPrenom(event.target.value)}
+                                    autoComplete="lastName"
+                                    id="lastName"
+                                    value={lastname}
+                                    onChange={(event) => setLastName(event.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -116,6 +122,33 @@ export default function User() {
                                     onChange={(event) => setEmail(event.target.value)}
                                 />
                             </Grid>
+
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+
+                                    label="username"
+
+                                    autoComplete="username"
+                                    id="username"
+                                    value={username}
+                                    onChange={(event) => setUserName(event.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+
+                                    label="role"
+
+                                    autoComplete="role"
+                                    id="role"
+                                    value={role}
+                                    onChange={(event) => setRole(event.target.value)}
+                                />
+                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -123,7 +156,7 @@ export default function User() {
 
                                     label="password"
 
-                                    autoComplete="nom"
+                                    autoComplete="password"
                                     id="password"
                                     value={password}
                                     onChange={(event) => setPassword(event.target.value)}
@@ -136,7 +169,7 @@ export default function User() {
 
                                     label="telephone"
 
-                                    autoComplete="nom"
+                                    autoComplete="telephone"
                                     id="tel"
                                     value={telephone}
                                     onChange={(event) => settel(event.target.value)}
