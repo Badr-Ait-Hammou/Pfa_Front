@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from '@mui/material/Button';
-import axios from "axios";
+import axios from '../service/callerService';
 import Modal from "react-modal";
 
 
@@ -17,8 +17,8 @@ export default function SpecialiteTable(){
 
     useEffect(() => {
         const getSpecialite = async () => {
-            const res = await fetch('http://localhost:8080/api/specialites/');
-            const getdata = await res.json();
+            const res = await axios.get('/api/controller/specialites/');
+            const getdata = res.data;
             setSpecialites(getdata);
             loadSpecialites();
         }
@@ -26,13 +26,13 @@ export default function SpecialiteTable(){
     }, []);
 
     const loadSpecialites=async ()=>{
-        const res=await axios.get("http://localhost:8080/api/specialites/");
+        const res=await axios.get("/api/controller/specialites/");
         setSpecialites(res.data);
     }
 
     const handleDelete = (specialiteId) => {
         if (window.confirm("Are you sure you want to delete this Item?")) {
-            axios.delete(`http://localhost:8080/api/specialites/${specialiteId}`).then(() => {
+            axios.delete(`/api/controller/specialites/${specialiteId}`).then(() => {
                 setSpecialites(specialites.filter((specialite) => specialite.id !== specialiteId));
             });
         }
@@ -52,7 +52,7 @@ export default function SpecialiteTable(){
 
     const handleEditSpecialite = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:8080/api/specialites/${id}`, {
+            const response = await axios.put(`/api/controller/specialites/${id}`, {
                 nom: specialiteNom,
 
             })

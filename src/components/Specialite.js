@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import axios from 'axios';
+import axios from '../service/callerService';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -30,7 +30,7 @@ export default function Specialite() {
         if (!nom) {
             alert("Please enter a specialite name");
         } else {
-            await axios.post("http://localhost:8080/api/specialites/save", specialite);
+            await axios.post("/api/controller/specialites/save", specialite);
             setNom("");
             forceUpdate();
             setTableKey(Date.now()); // update the key to re-render the table
@@ -42,8 +42,7 @@ export default function Specialite() {
     }, [upTB]); // add upTB to the dependency array
 
     const getSpecialites = async () => {
-
-        const res = await axios.get(`http://localhost:8080/api/specialites/`);
+        const res = await axios.get(`/api/controller/specialites/`);
         setSpecialite(res.data);
 
     }

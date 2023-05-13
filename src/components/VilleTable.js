@@ -18,7 +18,7 @@ export default function VilleTable(){
 
     useEffect(() => {
         const getville = async () => {
-            const res = await axios.get('http://localhost:8080/api/controller/villes/');
+            const res = await axios.get('/api/controller/villes/');
             const getdata = res.data;
             setVilles(getdata);
             loadVilles();
